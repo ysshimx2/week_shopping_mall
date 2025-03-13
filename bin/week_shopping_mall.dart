@@ -37,8 +37,39 @@ class ShoppingMall {
 void main(List<String> argument) {
   while (true) {
     var shoppingMall = ShoppingMall();
+    int input = 0;
 
-    print("1 입력시 판매하고 있는 상품 목록 출력");
-    int input = int.parse(stdin.readLineSync()!);
+    List<Product> products = [
+      Product("셔츠", 45000),
+      Product("원피스", 30000),
+      Product("반팔티", 35000),
+      Product("반바지", 30000),
+      Product("양말", 5000),
+    ];
+    print(
+      "[1] 상품 목록 보기 / [2] 장바구니에 담기 / [3] 장바구니에 담긴 상품의 총 가격 보기 / [4] 프로그램 종료",
+    );
+    input = int.parse(stdin.readLineSync()!);
+
+    if (input == 1) {
+      for (Product product in products) {
+        print('${product.name} : ${product.price}');
+      }
+    } else if (input == 2) {
+      print("장바구니에 담을 상품을 선택해주세요.");
+      for (Product product in products) {
+        print(product.name);
+      }
+      String productName = stdin.readLineSync()!;
+      for (Product product in products) {
+        if (product.name == productName) {
+          shoppingMall.addTocart(product);
+        }
+      }
+    } else if (input == 3) {
+      shoppingMall.showTotalPrice();
+    } else if (input == 4) {
+      break;
+    }
   }
 }
