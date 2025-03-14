@@ -18,11 +18,6 @@ class ShoppingMall {
     totalPrice += product.price;
   }
 
-  void removeFromCart(Product product) {
-    products.remove(product);
-    totalPrice -= product.price;
-  }
-
   void showProducts() {
     for (Product product in products) {
       print(product.name);
@@ -47,7 +42,13 @@ void main(List<String> argument) {
       Product("양말", 5000),
     ];
     print(
+      '------------------------------------------------------------------------------------------------------',
+    );
+    print(
       "[1] 상품 목록 보기 / [2] 장바구니에 담기 / [3] 장바구니에 담긴 상품의 총 가격 보기 / [4] 프로그램 종료",
+    );
+    print(
+      '------------------------------------------------------------------------------------------------------',
     );
     input = int.parse(stdin.readLineSync()!);
 
@@ -56,19 +57,25 @@ void main(List<String> argument) {
         print('${product.name} : ${product.price}');
       }
     } else if (input == 2) {
-      print("장바구니에 담을 상품을 선택해주세요.");
-      for (Product product in products) {
-        print(product.name);
-      }
+      print("상품 이름을 입력해 주세요 !");
+
       String productName = stdin.readLineSync()!;
+      bool found = false;
       for (Product product in products) {
         if (product.name == productName) {
           shoppingMall.addTocart(product);
+          found = true;
+          break;
         }
+      }
+      if (!found) {
+        print("해당 상품이 존재하지 않습니다.");
       }
     } else if (input == 3) {
       shoppingMall.showTotalPrice();
+      print("장바구니에 [가격]원 어치를 담으셨네요 !");
     } else if (input == 4) {
+      print("이용해 주셔서 감사합니다 ~ 안녕히 가세요!");
       break;
     }
   }
