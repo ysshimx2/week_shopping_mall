@@ -69,14 +69,17 @@ void main(List<String> argument) {
         }
       }
       if (!found) {
-        print("해당 상품이 존재하지 않습니다.");
+        print("입력 값이 올바르지 않아요!");
       }
     } else if (input == 3) {
       shoppingMall.showTotalPrice();
-      print("장바구니에 [가격]원 어치를 담으셨네요 !");
+      var totalPrice;
+      print("장바구니에 '${totalPrice}'원 어치를 담으셨네요 !");
     } else if (input == 4) {
       print("이용해 주셔서 감사합니다 ~ 안녕히 가세요!");
       break;
+    } else {
+      print("지원하지 않는 기능입니다 ! 다시 시도해 주세요...");
     }
   }
 }
